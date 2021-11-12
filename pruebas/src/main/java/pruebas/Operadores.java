@@ -1,4 +1,6 @@
-import java.util.Scanner;
+package src.main.java.pruebas;
+
+
 
 public class Operadores {
 
@@ -13,7 +15,7 @@ public class Operadores {
 		/
 		
 		*/
-		
+		/*
 		int edad1=10;
 		int edad2=10;
 		
@@ -81,7 +83,7 @@ public class Operadores {
 		// Este proceso se llama debug
 		
 		
-		
+		*/
 		
 		
 	}
