@@ -2,7 +2,8 @@ package Clase6.opp;
 
 public class Buscador {
 	
-	
+	// Atributos
+	//modificadores
 	private String claveBusqueda;
 	private Articulo[] resultados;
 	
@@ -21,10 +22,14 @@ public class Buscador {
 		
 		Articulo[] resultadoQueHayEnDB=db.consultar(claveBusqueda);
 	}
-	
+	/*
 	void definirClaveBusqueda(String clave) {
 		claveBusqueda=clave;
 	}
+	*/
+	
+	//alt+shit+s
+	
 	
 	void mostrarResultados() {
 		if(this.resultados.length>0) {
@@ -32,5 +37,17 @@ public class Buscador {
 				aux.detalleArticulo;
 			}
 		}
+	}
+	
+	public Articulo[] getResultados() {
+		return resultados;
+	}
+
+	public String getClaveBusqueda() {
+		return claveBusqueda;
+	}
+
+	public void setClaveBusqueda(String claveBusqueda) {
+		this.claveBusqueda = claveBusqueda;
 	}
 }
