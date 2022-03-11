@@ -73,7 +73,7 @@ public class DatosDBMemoria {
 		materias.add(M6);
 
 	}
-
+///////////////////////
 //////////////////////////////////////////////////////////////////////
 	public void Insertar(int item) {
 		Materia materia = new Materia();

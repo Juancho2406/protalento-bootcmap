@@ -54,7 +54,7 @@ public class Menu {
 		System.out.println("\nDigite el apellido del alumno");
 		
 		
-		
+		///////////////////////////////////
 		
 	}
 }
