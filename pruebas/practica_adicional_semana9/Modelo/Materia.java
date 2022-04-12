@@ -9,7 +9,7 @@ public class Materia {
 	private String turno;
 	private String nombre;
 	private List<Integer> Alumnos;
-///// GETTERS Y SETTERS ////////// 
+///// GETTERS Y SETTERS ////////// ////////
 	
 	public void setId(Integer id) {
 		this.id = id;

@@ -65,6 +65,6 @@ public class Aplicacion {
 		teclado.close();
 		System.out.println("El programa ha finalizado");
 
-	}///////////////////////////////
+	}/////////////////////////////////////
 
 }

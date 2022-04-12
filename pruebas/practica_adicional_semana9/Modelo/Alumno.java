@@ -11,7 +11,7 @@ public class Alumno {
 	private List<Integer> materias;
 	
 	
-	//////// GETTERS Y SETTERS  /////////
+	//////// GETTERS Y SETTERS  ///////////////
 
 	
 
