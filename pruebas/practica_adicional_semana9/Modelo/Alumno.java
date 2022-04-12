@@ -1,25 +1,31 @@
 package practica_adicional_semana9.Modelo;
+
+import java.util.List;
+
 public class Alumno {
 	/////ATRIBUTOS       /////////////
 	private Integer id;
 	private int matricula;
 	private String nombre;
 	private String apellido;
-	private int[] materias=new int[10];
+	private List<Integer> materias;
 	
 	
 	//////// GETTERS Y SETTERS  /////////
-	public Integer getId() {
-		return id;
-	}
-	public int[] getMaterias() {
+
+	
+
+	public List<Integer> getMaterias() {
 		return materias;
 	}
-	public void setMaterias(int[] materias) {
+	public void setMaterias(List<Integer> materias) {
 		this.materias = materias;
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Integer getId() {
+		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -50,13 +56,7 @@ public class Alumno {
 		this.nombre = nombre;
 		this.apellido = apellido;
 	}
-	public Alumno(int id,int matricula, String nombre, String apellido,int[] materias) {
-		
-		this.matricula = matricula;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.materias= materias;
-	}
+
 	public Alumno() {
 		
 	}

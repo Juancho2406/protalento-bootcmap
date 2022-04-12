@@ -1,6 +1,8 @@
 package practica_adicional_semana9.Database;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import practica_adicional_semana9.Modelo.Alumno;
 import practica_adicional_semana9.Modelo.Materia;
@@ -15,6 +17,7 @@ public class DatosDBMemoria {
 	Alumno alumno;
 	Materia materia;
 	String continuar;
+	private List<Integer> alumnosMateria;
 
 	public DatosDBMemoria() {
 		CargarArrayAlumno();
@@ -32,11 +35,53 @@ public class DatosDBMemoria {
 	public ArrayList<Materia> getMaterias() {
 		return materias;
 	}
-
+	
 	public void setMaterias(ArrayList<Materia> materias) {
 		this.materias = materias;
 	}
+	
+	//////////////////////////
+	public void insertarAlumnoAMateria() {
+		
+		System.out.println("\n Digite el id de la materia ");
+		Integer idMateria=sc.nextInt();
+		System.out.println("\n Digite el id del alumno ");
+		Integer idAlumno=sc.nextInt();
+		
+		Materia materia=materias.get(idMateria-1);
+		
+		alumnosMateria = new ArrayList<Integer>();
+		alumnosMateria=(List<Integer>) materia.getAlumnos();
+		if(alumnosMateria==null) {
+			alumnosMateria=new ArrayList<Integer>();
+			alumnosMateria.add(0, idAlumno);
+		}else {
+			alumnosMateria.add(idAlumno);
+		}
+		
+		materia.setAlumnos(alumnosMateria);
+		materias.add(idMateria-1, materia);
+		insertarMateriaAAlumno(idAlumno, idMateria);
+	}
+	//////////////////////////////////////////
+	
+//////////////////////////
+	public void insertarMateriaAAlumno(Integer idAlumno, Integer idMateria) {
 
+		
+		Alumno alumno=alumnos.get(idAlumno);
+		
+		List<Integer> materiasAlumno=alumno.getMaterias();
+		if(materiasAlumno==null) {
+			materiasAlumno=new ArrayList<Integer>();
+			materiasAlumno.add(idMateria);
+		}else {
+		materiasAlumno.add(idMateria);
+		}
+		alumno.setMaterias(materiasAlumno);
+		alumnos.add(idMateria, alumno);
+	}
+//////////////////////////////////////////
 	public void CargarArrayAlumno() {
 
 		Alumno A1 = new Alumno(1, 20201031, "Pedro", "Torres");
@@ -85,10 +130,10 @@ public class DatosDBMemoria {
 			alumno.setMatricula(sc.nextInt());
 
 			System.out.println("\nDigite el nombre del alumno");
-			alumno.setNombre(sc.nextLine());
+			alumno.setNombre(sc.next());
 
 			System.out.println("\nDigite el apellido del alumno");
-			alumno.setApellido(sc.nextLine());
+			alumno.setApellido(sc.next());
 
 			alumno.setId(alumnos.size() + 1);
 
@@ -102,11 +147,11 @@ public class DatosDBMemoria {
 			listar(item);
 			materia.setId(materias.size() + 1);
 			System.out.println("Digite el nombre de la materia\n");
-			materia.setNombre(sc.nextLine());
+			materia.setNombre(sc.next());
 			System.out.println("Digite el curso de la materia\n");
-			materia.setCurso(sc.nextLine());
+			materia.setCurso(sc.next());
 			System.out.println("Digite el turno de la materia\n");
-			materia.setTurno(sc.nextLine());
+			materia.setTurno(sc.next());
 
 			System.out.println(" Ha ingresado la siguiente materia" + "\n Id: " + materia.getId() + "\n Nombre: "
 					+ materia.getNombre() + "\n Curso: " + materia.getCurso() + "\n Turno:" + materia.getTurno());
@@ -158,9 +203,9 @@ public class DatosDBMemoria {
 			System.out.println("Digite la Matricula del alumno \n");
 			alumno.setMatricula(sc.nextInt());
 			System.out.println("Digite el Nombre del alumno \n");
-			alumno.setNombre(sc.nextLine());
+			alumno.setNombre(sc.next());
 			System.out.println("Digite el Apellido del alumno \n");
-			alumno.setApellido(sc.nextLine());
+			alumno.setApellido(sc.next());
 
 			alumnos.add(id - 1, alumno);
 
@@ -171,19 +216,19 @@ public class DatosDBMemoria {
 			
 			  //materia=materias.get(id-1);
 			  System.out.println("Digite el nombre de la materia\n");
-			  materia.setNombre(sc.nextLine());
+			  materia.setNombre(sc.next());
 			  System.out.println("Digite el curso de la materia\n");
-			  materia.setCurso(sc.nextLine());
+			  materia.setCurso(sc.next());
 			  System.out.println("Digite el turno de la materia\n");
-			  materia.setTurno(sc.nextLine());
+			  materia.setTurno(sc.next());
 			  
 			  
 			  System.out.println("Digite el nombre de la materia\n"); String
-			  nombreMateria=sc.nextLine();
+			  nombreMateria=sc.next();
 			  System.out.println("Digite el curso de la materia\n"); String
-			  cursoMateria=sc.nextLine();
+			  cursoMateria=sc.next();
 			  System.out.println("Digite el turno de la materia\n"); String
-			  turnoMateria=sc.nextLine(); Materia materia=new
+			  turnoMateria=sc.next(); Materia materia=new
 			  Materia(id,nombreMateria,cursoMateria,turnoMateria);
 			 
 			materias.add(id - 1, materia);
@@ -203,12 +248,12 @@ public class DatosDBMemoria {
 			System.out.println(" El id no corresponde a ningun dato ");
 		}else {
 			if (item == 1) {
-				alumno = alumnos.get(id-1);
+				alumno = alumnos.get(id);
 				listarAlumnoPorId(alumno);
 			}
 
 			if (item == 2) {
-				materia = materias.get(id-1);
+				materia = materias.get(id);
 				listarMateriaPorId(materia);
 			}
 		}
@@ -224,7 +269,7 @@ public class DatosDBMemoria {
 			System.out.println("ID             MATRICULA            NOMBRE             APELLIDO  ");
 			System.out.println("___________________________ _____________________________________________________");
 			for (Alumno Alum : alumnos) {
-				System.out.println(Alum.getId() + "         " + Alum.getMatricula() + "     " + Alum.getNombre()
+				System.out.println(Alum.getId() + "      " + Alum.getMatricula() + "    " + Alum.getNombre()
 						+ "        " + Alum.getApellido());
 
 			}
@@ -247,52 +292,57 @@ public class DatosDBMemoria {
 	
 	
 	public void listarAlumnoPorId(Alumno alumno) {
-		int [] materiasDelAlumno=new int[10];
-		int id=0;
-		System.out.println(" ALUMNO ENCONTRADO");
-		System.out.println("Matricula: " + alumno.getMatricula() + "\n Nombre: " + alumno.getNombre()
-				+ "\n Apellido: " + alumno.getApellido() + "\n ");
+		
+		int id=alumno.getId();
+		if(id==0) {	
+			System.out.println("\n Alumno no encontrado porque el id no es correcto");
+		}else {
+			System.out.println(" ALUMNO ENCONTRADO");
+			System.out.println("Matricula: " + alumno.getMatricula() + "\n Nombre: " + alumno.getNombre()
+					+ "\n Apellido: " + alumno.getApellido() + "\n ");
+		}
 		
 		System.out.println("MATERIAS DEL ALUMNO: \n");
-		materiasDelAlumno=alumno.getMaterias();
-		if(id==0) {	
-			System.out.println("No se encontraron mas materia");
-		}else
-		for(int i=0;i<10;i++) {
-//		Aqui el problema es que el id siempre termina valiendo 0 es decir no encuentra el dato de igual manera 
-//		al guardar el vector id materias se guarda completo pero al extraerse se extra en 0
-//			Ademas esta imprimiendo un alumno no correspondiente al id imprime un id encima
-			id=materiasDelAlumno[i];
-			
-			materia=materias.get(id);
-			System.out.println("-------------------------------------------");
-			System.out.println(" \n Materia del alumno: "+(i+1)+"\n");
-			System.out.println("\n Id de la materia: "+materia.getId());
-			System.out.println("\n Nombre de la materia: "+materia.getNombre());
-			System.out.println("\n Curso de la mateira: "+materia.getCurso());
-			System.out.println("\n Turno de la materia: "+materia.getTurno());
-			System.out.println("-------------------------------------------");
-			
-		}
-		System.out.println("\nEl alumno no tiene mas  materias \n");
+		List<Integer> materiasDelAlumno=alumno.getMaterias();
+		if(materiasDelAlumno.size()==0) {	
+			System.out.println("La materia no tiene alumnos inscritos");
+		}else {
+			for(Integer IdMeterias:materiasDelAlumno) {				
+				materia=materias.get(IdMeterias);
+				System.out.println("-------------------------------------------");
+				System.out.println(" \n Materia del alumno: "+(i+1)+"\n");
+				System.out.println("\n Id de la materia: "+materia.getId());
+				System.out.println("\n Nombre de la materia: "+materia.getNombre());
+				System.out.println("\n Curso de la mateira: "+materia.getCurso());
+				System.out.println("\n Turno de la materia: "+materia.getTurno());
+				System.out.println("-------------------------------------------");
+				
+			}
+			System.out.println("\nEl alumno no tiene mas  materias \n");
 	}
+}
 	//////////////////////////////////////////////////////////////////////////////////
 // En este metodo se lista los alumnos de una materia a partir del id	
 	
 	public void listarMateriaPorId(Materia materia) {
-		int [] alumnosDeLaMateria=new int[40];
-		System.out.println(" MATERIA ENCONTRADA");
-		System.out.println("Id: " + materia.getId() + "\n Nombre: " + materia.getNombre() + "\n Curso: "
-				+ materia.getCurso() + "\n Turno: " + materia.getTurno());
 		
-		int id=0;
+		int id=materia.getId();
+		if(id==0) {
+			System.out.println(" Materia no encontrada porque el id es incorrecto");
+		}else {
+			System.out.println(" MATERIA ENCONTRADA");
+			System.out.println("Id: " + materia.getId() + "\n Nombre: " + materia.getNombre() + "\n Curso: "
+					+ materia.getCurso() + "\n Turno: " + materia.getTurno());
+			
+		}
 		System.out.println("MATERIAS DEL ALUMNO: \n");
-		alumnosDeLaMateria=materia.getAlumnos();
-		for(int i=0;i<40;i++) {
-			id=alumnosDeLaMateria[i];
+		List<Integer>alumnosDeLaMateria=materia.getAlumnos();
+		if(alumnosDeLaMateria.size()==0) {	
+			System.out.println("El alumno no tiene materias inscritas");
+		}else {
 			
-			
-			alumno=alumnos.get(id);
+			for(Integer IdAlumnos:alumnosDeLaMateria) {
+			alumno=alumnos.get(IdAlumnos);
 			System.out.println("--------------------------------------------");
 			System.out.println(" \n Alumno de la materia: "+(i+1)+"\n");
 			System.out.println("\n Id del  alumno: "+alumno.getId());
@@ -305,5 +355,7 @@ public class DatosDBMemoria {
 		System.out.println("\nLa materia no tiene mas alumnos registrados \n");
 	}
 
+	}
 //////////////////////////////////////////////////////////////////////////////////////////////
+
 }

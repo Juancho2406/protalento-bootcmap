@@ -3,7 +3,6 @@ package practica_adicional_semana9.Main;
 import java.util.Scanner;
 
 import practica_adicional_semana9.Database.DatosDBMemoria;
-import practica_adicional_semana9.Modelo.Relacion;
 
 public class Aplicacion {
 
@@ -26,7 +25,7 @@ public class Aplicacion {
 		int continuar;
 		Menu menu = new Menu();
 		DatosDBMemoria DB = new DatosDBMemoria();
-		Relacion Re=new Relacion();
+		
 		do {
 			do {
 				Menu.MostrarMenu();
@@ -55,8 +54,7 @@ public class Aplicacion {
 				DB.listar(categoria);
 			}
 			if(opcionCrud==6) {
-				DB.setAlumnos(Re.cargarMateriasAAlumno(DB.getAlumnos()));
-				DB.setMaterias(Re.cargarAlumnosAMateria(DB.getMaterias(), DB.getAlumnos()));
+				DB.insertarAlumnoAMateria();
 			}
 
 			System.out.println("Desea seguir utilizando el programa?,"
